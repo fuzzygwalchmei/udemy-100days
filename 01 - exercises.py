@@ -36,4 +36,10 @@ b, a = a, b
 print("switcheroo...")
 print(f"Now... a == {a}, and b == {b}")
 
+# Day 01 Project
+print("Welcome o the Band Name Generator.")
+city_name = input("What's the name of the city you grew up in?\n")
+pet_name = input("Whats the name of your Pet?\n")
 
+band_name = f'{city_name} {pet_name}'
+print(band_name)
