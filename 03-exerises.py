@@ -37,19 +37,42 @@
 # else:
 #     print("Not a leap year")
 
-# Exercise 3.4 - Pizza Order
-base = {'S':(15,2,1),'M':(20,2,1),'L':(25,3,1)}
-total = 0
+# # Exercise 3.4 - Pizza Order
+# base = {'S':(15,2,1),'M':(20,2,1),'L':(25,3,1)}
+# total = 0
 
-print("Welcome to the Python Pizza Deliveries!")
-size = input("What size pizza do you want? (S,M or L): ")
-add_pepperoni = input("Do you want Pepperoi? (Y or N): ")
-extra_cheese = input("Do you want extra Cheese? (Y or N): ")
+# print("Welcome to the Python Pizza Deliveries!")
+# size = input("What size pizza do you want? (S,M or L): ")
+# add_pepperoni = input("Do you want Pepperoi? (Y or N): ")
+# extra_cheese = input("Do you want extra Cheese? (Y or N): ")
 
-total += base.get(size.upper(),(15,0,0))[0]
-if add_pepperoni.upper()=='Y':
-    total += base.get(size.upper(),(15,0,0))[1]
-if extra_cheese.upper()=='Y':
-    total += base.get(size.upper(),(15,0,0))[2]
+# total += base.get(size.upper(),(15,0,0))[0]
+# if add_pepperoni.upper()=='Y':
+#     total += base.get(size.upper(),(15,0,0))[1]
+# if extra_cheese.upper()=='Y':
+#     total += base.get(size.upper(),(15,0,0))[2]
 
-print(f"Your final bill is ${total}")
+# print(f"Your final bill is ${total}")
+
+# # Exercise - Love score
+# print("Calculate your love score!")
+# name1 = input("What is your name?: ")
+# name2 = input("What is their name?: ")
+
+# true = 0
+# love = 0
+
+# for letter in 'true':
+#     true+=(name1+name2).lower().count(letter)
+# for letter in 'love':
+#     love+=(name1+name2).lower().count(letter)
+
+# score = true*10+love
+# print(score)
+# if (10 > score < 90):
+#     print("Coke and Mentos")
+# elif (40 <= score <= 50):
+#     print("alright")
+# else:
+#     print("z")
+
