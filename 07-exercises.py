@@ -25,5 +25,7 @@ while lives > 0:
     elif guess in chosen_word:
         guesses.append(guess)
     else:
+        guesses.append(guess)
         lives -= 1
+print("You lose! :(")
 
