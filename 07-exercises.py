@@ -5,9 +5,25 @@ word_list = ["aardvark", "baboon", "camel"]
 from random import choice
 chosen_word = choice(word_list)
 
-display = ['_' for i in range(len(chosen_word))]
 
-print(display)
+lives = 5
+heart = u'\u2764'
+guesses = []
+ 
 
-guess = input("Pick a letter: ").lower()
-print("It is" if guess in chosen_word else "Try again")
+while lives > 0:
+    display = [letter if letter in guesses else '_' for letter in chosen_word]
+    print(display)
+    if '_' not in display:
+        print("You guessed the word!")
+        break
+
+    print(f"Lives: {lives*heart}")
+    guess = input("Pick a letter: ").lower()
+    if guess in guesses:
+        print("You've already guessed that, pick again")    
+    elif guess in chosen_word:
+        guesses.append(guess)
+    else:
+        lives -= 1
+
