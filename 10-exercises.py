@@ -42,16 +42,23 @@ def mult(a,b):
 
 def div(a,b):
     return a//b
-repeat = "y"
-func = {"+":add, "-":sub, "*":mult, "/":div}
 
-result = int(input("What is the first value: "))
-while repeat == "y":
-    a = result
-    op = func.get(input("Which operator (+,-,*,/): "),add)
-    b = int(input("What is the second number: "))
-    result = op(a,b)
-    print(result)
-    repeat = input("Do you want to more? (y/n): ").lower()
+def calculator():
+    repeat = "y"
+    func = {"+":add, "-":sub, "*":mult, "/":div}
+
+    result = int(input("What is the first value: "))
+    while repeat == "y":
+        a = result
+        choice = input("Which operator (+,-,*,/): ")
+        op = func.get(choice,add)
+        b = int(input("What is the second number: "))
+        result = op(a,b)
+        print(f"{a} {choice} {b} = {result}")
+        repeat = input("Do you want to more or restart? (y/n/r): ").lower()
+        if repeat == "r":
+            calculator()
+
+calculator()
 
     
