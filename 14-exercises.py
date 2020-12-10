@@ -25,9 +25,10 @@ def main():
     # Keep score of correctly guessed
     score = 0
     # on correct guess, compare successful answer option to new option
+    b = random.choice(data)
     while True:
 
-        a = random.choice(data)
+        a = b
         b = random.choice(data)
 
         pose_question(a,b)
