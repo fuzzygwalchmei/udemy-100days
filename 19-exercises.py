@@ -16,11 +16,16 @@ def turn_right():
 def move_backwards():
     t.back(10)
 
+def clear():
+    t.home()
+    t.clear()
+    
 s.listen()
 s.onkey(move_forward, 'w')
 s.onkey(turn_left, 'a')
 s.onkey(turn_right, 'd')
 s.onkey(move_backwards,'s')
+s.onkey(clear, 'c')
 
 
 s.exitonclick()
