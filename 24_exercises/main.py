@@ -1,6 +1,5 @@
 #! /bin/python3
 
-
 from turtle import Turtle, Screen
 from snake import Snake
 from food import Food
