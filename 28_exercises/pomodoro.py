@@ -7,23 +7,47 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 0.5
+SHORT_BREAK_MIN = 0.25
+LONG_BREAK_MIN = 0.5
+reps = 1
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_timer():
+    window.after_cancel(timer)
+    canvas.itemconfig(txt_timer, text = "00:00")
+    lbl_title.config(text = "Timer", fg=GREEN)
+    lbl_check.config(text="")
+
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
-def start():
-    countdown(WORK_MIN * 60)
+def start_timer():
+    global reps
+    if reps%8 == 0:
+        timer_time, timer_text, colour = LONG_BREAK_MIN, "Break", RED
+    elif reps%2 == 0:
+        timer_time, timer_text, colour  = SHORT_BREAK_MIN, "Break", PINK
+    else:
+        timer_time, timer_text, colour  = WORK_MIN, "Work", GREEN
+
+    print(reps)
+    lbl_title.config(text=timer_text, fg=colour)
+    countdown(timer_time * 60)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def countdown(count):
-    minutes, seconds = count//60, count%60
-    canvas.itemconfig(timer_text, text = f"{minutes:02}:{seconds:02}")
+    global reps
+    global timer
+    minutes, seconds = int(count//60), int(count%60)
+    canvas.itemconfig(txt_timer, text = f"{minutes:02}:{seconds:02}")
     if count > 0:
-        window.after(1000, countdown, count - 1)
+        timer = window.after(100, countdown, count - 1)
+    else:
+        reps += 1
+        start_timer()
+        lbl_check.config(text = f"{(reps//2)%4 * '✓'}")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -37,14 +61,14 @@ window.title("Pomodoro")
 canvas = tk.Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 tomato_img = tk.PhotoImage(file="tomato.png")
 canvas.create_image(100, 112, image=tomato_img)
-timer_text = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
+txt_timer = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 
 # Create other widgets
 lbl_title = tk.Label(text="Timer", fg=GREEN, font=(FONT_NAME, 35, "bold"), bg=YELLOW)
-btn_start = tk.Button(text="Start", bg="white", highlightthickness=0, command=start)
-btn_finish = tk.Button(text="Finish", bg="white", highlightthickness=0)
+btn_start = tk.Button(text="Start", bg="white", highlightthickness=0, command=start_timer)
+btn_finish = tk.Button(text="Finish", bg="white", highlightthickness=0, command=reset_timer)
 # chk_completed = tk.Checkbutton(bg=YELLOW)
-lbl_check = tk.Label(text="✓", bg=YELLOW, fg=GREEN, font=(FONT_NAME, 35, "bold"))
+lbl_check = tk.Label(text="", bg=YELLOW, fg=GREEN, font=(FONT_NAME, 35, "bold"))
 
 # Put everything on window
 lbl_title.grid(row=0, column=1)
