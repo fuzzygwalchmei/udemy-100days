@@ -5,6 +5,7 @@ from PIL import ImageTk
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 from string import ascii_letters, digits, punctuation
 from random import choice, choices, shuffle
+import pyperclip
 
 def gen_password():
     ent_password.delete(0, tk.END)
@@ -15,6 +16,7 @@ def gen_password():
     shuffle(password_temp)
     passwd = "".join(password_temp)
     ent_password.insert(0, passwd)
+    pyperclip.copy(passwd)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
