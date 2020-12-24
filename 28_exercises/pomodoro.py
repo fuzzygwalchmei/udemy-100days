@@ -7,9 +7,9 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 0.5
-SHORT_BREAK_MIN = 0.25
-LONG_BREAK_MIN = 0.5
+WORK_MIN = 25
+SHORT_BREAK_MIN = 5
+LONG_BREAK_MIN = 20
 reps = 1
 timer = None
 
@@ -32,7 +32,6 @@ def start_timer():
     else:
         timer_time, timer_text, colour  = WORK_MIN, "Work", GREEN
 
-    print(reps)
     lbl_title.config(text=timer_text, fg=colour)
     countdown(timer_time * 60)
 
@@ -43,7 +42,7 @@ def countdown(count):
     minutes, seconds = int(count//60), int(count%60)
     canvas.itemconfig(txt_timer, text = f"{minutes:02}:{seconds:02}")
     if count > 0:
-        timer = window.after(100, countdown, count - 1)
+        timer = window.after(1000, countdown, count - 1)
     else:
         reps += 1
         start_timer()
