@@ -1,6 +1,8 @@
 import tkinter as tk
-from tkinter import font
+from tkinter import Image, font
 from tkinter.constants import Y
+from PIL import ImageTk
+
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -12,20 +14,26 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 1
 timer = None
+running = False
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 def reset_timer():
+    global running
     window.after_cancel(timer)
     canvas.itemconfig(txt_timer, text = "00:00")
     lbl_title.config(text = "Timer", fg=GREEN)
     lbl_check.config(text="")
+    running = False
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
     global reps
-    if reps%8 == 0:
+    global running
+    if running == True:
+        return
+    elif reps%8 == 0:
         timer_time, timer_text, colour = LONG_BREAK_MIN, "Break", RED
     elif reps%2 == 0:
         timer_time, timer_text, colour  = SHORT_BREAK_MIN, "Break", PINK
@@ -33,6 +41,7 @@ def start_timer():
         timer_time, timer_text, colour  = WORK_MIN, "Work", GREEN
 
     lbl_title.config(text=timer_text, fg=colour)
+    running = True
     countdown(timer_time * 60)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
@@ -58,7 +67,8 @@ window.title("Pomodoro")
 
 # Create Canvas
 canvas = tk.Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
-tomato_img = tk.PhotoImage(file="tomato.png")
+tomato_img = ImageTk.PhotoImage(file="tomato.png")
+# tomato_img.show()
 canvas.create_image(100, 112, image=tomato_img)
 txt_timer = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 
