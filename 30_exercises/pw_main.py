@@ -47,10 +47,10 @@ def add_password():
             with open(PASSWORD_FILE,'w') as f:
                 json.dump(data, f, indent=4)
 
-        ent_website.delete(0, tk.END)
-        ent_username.delete(0, tk.END)
-        ent_password.delete(0, tk.END)
-        messagebox.showinfo(message="Details stored")
+            ent_website.delete(0, tk.END)
+            ent_username.delete(0, tk.END)
+            ent_password.delete(0, tk.END)
+            messagebox.showinfo(message="Details stored")
 
 def website_search():
     try:
