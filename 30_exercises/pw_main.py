@@ -70,8 +70,8 @@ img = ImageTk.PhotoImage(file="logo.png")
 logo = canvas.create_image(100,100,image=img)
 
 lbl_website = tk.Label(text="Website:")
-ent_website = tk.Entry(width=40)
-btn_search = tk.Button(text="Search", command=website_search)
+ent_website = tk.Entry(width=21)
+btn_search = tk.Button(text="Search", width = 15, command=website_search)
 
 lbl_username = tk.Label(text="Email/Username:")
 ent_username = tk.Entry(width=40)
