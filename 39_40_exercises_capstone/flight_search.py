@@ -15,7 +15,8 @@ class FlightSearch:
     def search(self, fly_from: str, fly_to:str, date_from:str, date_to:str):
         search_url = f"{self.base_url}/search"
         t_head = {'apikey' : self.acc_api}
-        t_params = {'fly_from' : fly_from, 'fly_to': fly_to, 'dateFrom' : date_from, 'dateTo': date_to, 'curr':'AUD'}
+        t_params = {'fly_from' : fly_from, 'fly_to': fly_to, 'dateFrom' : date_from, 'dateTo': date_to, 'curr':'AUD',
+        'max_stopovers':1}
         t_resp = requests.get(url=search_url, headers=t_head, params=t_params)
         t_resp.raise_for_status()
         data = t_resp.json()
