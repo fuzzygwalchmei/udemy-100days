@@ -9,20 +9,20 @@ sheety = DataManager()
 notify = NotificationManager()
 data = sheety.get_data()
 
-u_first = input("What is your first name?: ")
-u_last = input("What is your last name?: ")
-u_email = input("What is your email?: ")
-u_email_assert = input("Type your email again: ")
+# u_first = input("What is your first name?: ")
+# u_last = input("What is your last name?: ")
+# u_email = input("What is your email?: ")
+# u_email_assert = input("Type your email again: ")
 
 users = sheety.get_users()
 emails = [user['email'] for user in users]
 
-if u_email != u_email_assert:
-    print("Emails dont match")
-elif u_email in emails:
-    print("User already exists")
-else:
-    sheety.create_user(u_first, u_last, u_email)
+# if u_email != u_email_assert:
+#     print("Emails dont match")
+# elif u_email in emails:
+#     print("User already exists")
+# else:
+#     sheety.create_user(u_first, u_last, u_email)
 
 
 
@@ -39,14 +39,15 @@ for city in cities:
         for each in flights:
             prices.append(each['price'])
         min_price = min(prices)
+        if min_price < loc_min:
+            e_message = f"Low Price Alert!\nOnly ${min_price} from SYD to {city}"
+            notify.send_email(e_message, emails)
     except ValueError as e:
         continue
     except KeyError as e:
         continue
-    else:
-        if min_price < loc_min:
-            e_message = "Low Price Alert!\nOnly ${min_price} from SYD to {city}"
-            notify.send_email(e_message, emails)
+
+        
 
     #         message = f"Low Price Alert!\nOnly ${min_price} from SYD to {city}"
     #         notify.send_sms(message)
