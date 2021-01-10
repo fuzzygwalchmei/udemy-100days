@@ -4,3 +4,4 @@ __pycache__
 venv
 */*/.env
 36_exercises/stock-news-extrahard-start/stock-news-extrahard-start/.env
+*/*/token.txt

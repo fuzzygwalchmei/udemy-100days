@@ -16,27 +16,41 @@ import requests
 # print(soup.select_one(selector='p a')) #selector uses css element naming convention
 
 
-url = "https://news.ycombinator.com/news"
+# url = "https://news.ycombinator.com/news"
+
+# resp = requests.get(url=url)
+# req = resp.text
+# soup = BeautifulSoup(req, 'lxml')
+
+# # Get all articles and number of votes
+
+# articles = soup.select(selector=".storylink")
+
+# text = []
+# links = []
+
+# for article in articles:
+#     text.append(article.getText())
+#     links.append(article.get("href"))
+
+# votes = [int(score.getText().split()[0]) for score in soup.find_all(name="span", class_='score')]
+
+# # Find highest votes article
+
+# ind = votes.index(max(votes))
+
+# print(f"{text[ind]}: {links[ind]} : {votes[ind]}")
+
+url = 'https://www.empireonline.com/movies/features/best-movies-2/'
+
+article_tag = 'article-title-description__text'
 
 resp = requests.get(url=url)
-req = resp.text
-soup = BeautifulSoup(req, 'lxml')
 
-# Get all articles and number of votes
+soup = BeautifulSoup(resp.text, 'lxml')
 
-articles = soup.select(selector=".storylink")
+# movies = soup.select(selector=f".{article_tag} h3")
+movies = soup.find_all(class_='title')
 
-text = []
-links = []
-
-for article in articles:
-    text.append(article.getText())
-    links.append(article.get("href"))
-
-votes = [int(score.getText().split()[0]) for score in soup.find_all(name="span", class_='score')]
-
-# Find highest votes article
-
-ind = votes.index(max(votes))
-
-print(f"{text[ind]}: {links[ind]} : {votes[ind]}")
+for movie in movies[::-1]:
+    print(movie)
