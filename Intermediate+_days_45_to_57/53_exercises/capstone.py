@@ -17,7 +17,9 @@ FORM_URL = os.getenv('form_url')
 
 def write_to_sheet(addr, price, website):
     home = Path.home()
-    driver = webdriver.Chrome(f"{home}/Code/chromedriver")
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(f"{home}/Code/chromedriver", options=options)
     driver.get(FORM_URL)
     sleep(2)
     addr_entry = driver.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
