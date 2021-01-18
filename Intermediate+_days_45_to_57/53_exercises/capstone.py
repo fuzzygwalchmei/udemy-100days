@@ -21,6 +21,7 @@ def write_to_sheet(addr, price, website):
     options.add_argument('--headless')
     driver = webdriver.Chrome(f"{home}/Code/chromedriver", options=options)
     driver.get(FORM_URL)
+    print('Got to page')
     sleep(2)
     addr_entry = driver.find_element_by_xpath('//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
     addr_entry.send_keys(addr)
