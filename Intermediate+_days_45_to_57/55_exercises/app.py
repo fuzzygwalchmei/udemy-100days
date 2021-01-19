@@ -13,11 +13,11 @@ def home():
 @app.route('/<int:guess>')
 def guessing(guess):
     if guess == guess_it:
-        return "You guessed it"
+        return "<h1 style='color: green'>You guess it!</h1>"
     elif guess < guess_it:
-        return "Too low"
+        return "<h1 style='color: blue'>Too low</h1>"
     else:
-        return "Too high"
+        return "<h1 style='color: red'>Too High</h1>"
 
 
 
