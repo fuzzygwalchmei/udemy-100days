@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>57 Exercise</title>
+</head>
+<body>
+    <a href="{{url_for('home')}}">Home</a>
+    <a href="{{url_for('guess',name='rebecca')}}">Rebecca</a>
+    {% if data.name %}
+    <h2>Random number: {{random}}</h2>
+    <p>Hi {{data.name.title()}}</p>
+    <p>I guess you are {{data.gender}} with a {{data.probability * 100}}% chance</p>
+
+    {% for item in data.items() %}
+        {{ item }}
+    {% endfor %}
+
+    {%  else %}
+    <p>Nothing passed in</p>
+    {% endif %}
+    
+</body>
+<footer>Copyright {{copy_year}}</footer>
+</html>
