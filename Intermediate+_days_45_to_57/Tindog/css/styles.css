@@ -9,6 +9,14 @@ h1 {
     font-weight: bolder;
 }
 
+h3 {
+    font-weight: bold;
+}
+
+p {
+    color: #8f8f8f
+}
+
 .container-fluid {
     padding: 3% 15%;
 }
@@ -44,4 +52,18 @@ h1 {
 .title-img {
     width: 60%;
     transform: rotate(30deg);
+}
+
+.feature-icon {
+    color: #ef8172;
+    margin-bottom: 1rem;
+}
+
+#features {
+    text-align: center;
+    padding: 5%;
+}
+
+.feature-icon:hover {
+    color: #ff4c68;
 }
