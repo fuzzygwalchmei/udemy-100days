@@ -114,3 +114,39 @@ p {
     padding: 3% 2%;
     
 }
+
+
+#cta {
+    background-color: #ff4c68;
+    text-align: center;
+    padding: 7% 15%;
+}
+
+.cta-heading {
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;;
+    color: #fff;
+}
+
+
+footer {
+    text-align: center;
+    padding: 7% 15%;
+}
+
+.social {
+    margin: 20px 10px;
+}
+
+@media (max-width: 1028px) {
+    .title-img {
+        position: static;
+        transform: rotate(0);
+    }
+
+    #title {
+        text-align: center;
+    }
+}
