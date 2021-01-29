@@ -1,0 +1,48 @@
+
+{% include 'header.html' %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('static/img/about-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Login Page</h1>
+            <span class="subheading">Somewhere to login.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div>
+      {{ success }}
+  </div>
+  <div>
+      <p>Test data to use</p>
+      <p>Email: admin@email.com</p>
+      <p>Password: 123456</p>
+  </div>
+
+  <div class="container">
+    <form action="{{ url_for('login') }}" method="post" novalidate> 
+      {{ form.csrf_token }}
+      <p>
+        {{ form.email.label }} <br> {{ form.email(size=30) }}
+        {% for err in form.email.errors %}
+        <span style="color: red;"> {{ err }}</span>
+        {% endfor %}
+      </p>
+      <p>
+        {{ form.password.label }} <br> {{ form.password(size=30) }}
+        {% for err in form.password.errors %}
+        <span style="color: red;"> {{ err }}</span>
+        {% endfor %}
+      </p>
+      {{ form.submit }}
+    </form>
+    <!-- {{ wtf.quick_form(form) }} -->
+  </div>
+
+
+{% include 'footer.html' %}
