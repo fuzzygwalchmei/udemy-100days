@@ -1,4 +1,7 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
 {% extends 'bootstrap/base.html' %}
+
 
 {% block title %}Add A New Cafe{% endblock %}
 
@@ -10,8 +13,12 @@
       <h1>Add a new cafe into the database</h1>
 
       <!-- This is where your WTForm will go -->
+      <form class="form form-horizontal" method="post" role="form">
+        {{wtf.quick_form(form, novalidate=True)}}
+      </form>
+      
 
-	  <p class="space-above"><a href="#">See all cafes</a></p>
+	  <p class="space-above"><a href="{{ url_for('cafes') }}">See all cafes</a></p>
 
     </div>
   </div>
