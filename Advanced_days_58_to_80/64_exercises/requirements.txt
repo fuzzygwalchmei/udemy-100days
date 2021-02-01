@@ -1,0 +1,15 @@
+bs4==0.0.1
+email-validator==1.1.2
+flask-bootstrap==3.3.7.1
+flask-sqlalchemy==2.4.4
+flask-wtf==0.14.3
+lxml==4.6.2
+pandas==1.1.5
+pillow==8.0.1
+pip-chill==1.0.0
+pyperclip==1.8.1
+python-dotenv==0.15.0
+requests-cache==0.5.2
+selenium==3.141.0
+spotipy==2.16.1
+twilio==6.50.1
