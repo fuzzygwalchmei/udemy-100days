@@ -31,21 +31,29 @@ def check_win(row, col, player):
     
     return False
 
-def check_turn():
-    # Check numeric
-    # Check is in 1-3
-    # Check not already taken
-    pass
+def check_turn(turn):
+    try:
+        if int(turn):
+            pass
+    except ValueError as e:
+        print(e)
+        return False
+    turn = int(turn)
+    if turn not in [1,2,3]:
+        print("not in 1,2 3,")
+        return False
+    
+    return True
 
 def make_turn(player):
     while True:
         row = input('Choose a row (1,2,3): ')
         col = input('Choose a column (1,2,3): ')
 
-        if row not in ['1','2','3']:
-            print('Not a valid row')
-        elif col not in ['1','2','3']:
-            print("Not a valid column")
+        if not check_turn(row):
+            print("Row not valid")
+        elif not check_turn(col):
+            print('Column not valid')
         
         elif board[int(row)-1][int(col)-1] != ' ':
             print('That spot is already taken')
