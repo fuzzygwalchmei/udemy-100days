@@ -65,6 +65,25 @@ def make_turn(player):
             break
             
 
+def minmax(board, player):
+    max_player = player
+    opponent = 'O' if player == 'X' else 'X'
+
+    # if its the current play would be a win for the player return number of empty squares * 1, else opponent return number of empty squares * -1
+    # elif there are no spaces left return 0
+
+    # if its max_players turn start with blank position and a score of negative infinite: thus every move maximises
+    # else start with a blank position and a score of positive infinite: thus every move minimises
+
+    # start running though positions recursively
+
+    # reset the temporary board
+
+    # if player is max see if the simulated score is better than the previously best score
+    # if the player is other see if the simulated score is lower than the previous best
+
+    # return the best score
+
 playing = True
 turn = 0
 # Loop for turns
