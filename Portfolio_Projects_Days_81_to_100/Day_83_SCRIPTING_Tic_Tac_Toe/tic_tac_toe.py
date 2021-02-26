@@ -76,13 +76,27 @@ def minmax(board, player):
     # else start with a blank position and a score of positive infinite: thus every move minimises
 
     # start running though positions recursively
+    for possible_move in board.available_moves():
+        board.make_move(possible_move, player)
+        sim_score = self.minmax(board, opponent)
 
     # reset the temporary board
+        board.board[possible_move]
+        board.current_winner = None
+        sim_score = self.minmax(board, opponent)
+
 
     # if player is max see if the simulated score is better than the previously best score
-    # if the player is other see if the simulated score is lower than the previous best
+        if player == max_player:
+            if sim_score['score'] > best['score']:
+                best = sim_score
 
+    # if the player is other see if the simulated score is lower than the previous best
+        else:
+            if sim_score['score'] < best['score']:
+                best = sim_score
     # return the best score
+    return best
 
 playing = True
 turn = 0
