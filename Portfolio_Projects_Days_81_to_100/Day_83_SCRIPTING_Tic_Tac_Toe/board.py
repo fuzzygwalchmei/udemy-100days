@@ -4,7 +4,7 @@ class Gameboard(object):
         self.board = self.make_board()
         self.squares = [i for i in range(9)]
         self.current_winner = None
-        self.commands = ['m','o','p','q', *range(9)]
+        self.commands = ['m','a','p','q', *range(9)]
 
 
     @staticmethod
@@ -22,6 +22,24 @@ class Gameboard(object):
 
         for row in sequence:
             print('| '+ ' | '.join(row + ' |'))
+
+    def empty_squares(self):
+        return self.board.count(' ')
+
+    def make_move(self, move, letter):
+        if self.board[move] == ' ':
+            self.board[move] = letter
+            if self.winning_move(move, letter):
+                self.current_winner = letter
+            return True
+        return False
+
+    def winning_move(self, move, letter):
+        # define winning moves
+        # check each row
+        # check each column
+        # check diagonals
+        pass
 
 
 
