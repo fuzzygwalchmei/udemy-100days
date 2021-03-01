@@ -15,17 +15,19 @@ class Humanplayer(Player):
         self.letter = letter
 
     def get_move(self, board):
-        move = None
         valid = False
+        board.print_board('p')
 
         while not valid:
             option = input('Its your turn - Make a move or pick a menu option: ').lower()
             if option not in board.commands:
                 print('That is not a valid menu option (m for menu options)')
             elif option == 'p':
-                board.print_board(board.board)
+                board.print_board(option)
             elif option == 'a':
-                board.print_board(board.squares)
+                board.print_board(option)
+            elif option == 's':
+                print(board.commands)
             elif option == 'm':
                 print("""
                 Game Options:
@@ -38,11 +40,12 @@ class Humanplayer(Player):
             elif option == 'q':
                 print('Thanks for playing')
                 exit()
-            elif option not in board.available_moves():
-                print('That square is not available')
+            elif int(option) in board.available_moves():
+                return int(option)
+                 
             else:
-                move = int(option)
-        return move
+                print('That square is not available')
+        
 
 
 
@@ -60,10 +63,11 @@ class Smartcomp(Player):
         self.letter = letter
 
     def get_move(self, board):
-        if len(board.avialable_moves()) == 9:
+        if len(board.available_moves()) == 9:
             move = choice(board.available_moves())
         else:
-            move = self.minmax(board, self.letter)['position']
+            result = self.minmax(self, board, self.letter)
+            move = result['position']
         return move
 
     @staticmethod
@@ -79,24 +83,26 @@ class Smartcomp(Player):
         elif len(board.available_moves()) ==0:
             return {'position': None, 'score':0}
 
-        elif player == maximiser:
-            best = {'position': None, 'score': 99}
-
-        else:
+        if player == maximiser:
             best = {'position': None, 'score': -99}
 
+        else:
+            best = {'position': None, 'score': 99}
+
         for possible_move in board.available_moves():
+            # print(f'Move: {possible_move}, Player: {player}')
             board.make_move(possible_move, player)
-            sim_score = self.minmax(board, opponent)
+            sim_score = self.minmax(self, board, opponent)
 
         # reset the temporary board
-            board.board[possible_move]
+            board.board[possible_move] = ' '
             board.current_winner = None
-            sim_score = self.minmax(board, opponent)
+            sim_score['position'] = possible_move
 
 
         # if player is max see if the simulated score is better than the previously best score
             if player == maximiser:
+
                 if sim_score['score'] > best['score']:
                     best = sim_score
 
@@ -105,4 +111,6 @@ class Smartcomp(Player):
                 if sim_score['score'] < best['score']:
                     best = sim_score
         # return the best score
+
         return best
+
