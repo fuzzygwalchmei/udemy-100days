@@ -7,18 +7,21 @@ app.title("Image Watermarker")
 
 
 def transparency():
-    base_img = Image.open(ent_file)
+    edit_file = ent_file.cget("text")
+    base_img = Image.open(edit_file)
 
     working_img = ImageDraw.Draw(base_img)
     black = (3, 8, 12)
     working_img.text((0,0), ent_text.get(), fill=black)
-    base_img.save('~/test_img.jpg')
+    rename = edit_file.split('.')
+    rename[0] = f'{rename[0]}_watermarked'
+    base_img.save('.'.join(rename))
 
 
 
 def callback():
     name = filedialog.askopenfile()
-    ent_file.config(text=name)
+    ent_file.config(text=name.name)
 
 lbl_file = Label(text='Select File: ')
 ent_file = Label()
